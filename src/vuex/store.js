@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const state = {
   isFetching: false,
+  success: true,
   nextPage: 1,
   hasMore: true,
   feeds: []
@@ -21,10 +22,12 @@ const mutations = {
 
   REQUEST_FEED_LIST(state) {
     state.isFetching = true;
+    state.success = true;
   },
 
   FEED_LIST(state, feeds) {
     state.isFetching = false;
+    state.success = true;
     state.feeds = concat(state.feeds, feeds);
     state.hasMore = feeds.length >= 9;
     state.nextPage = state.nextPage + 1;
@@ -32,6 +35,7 @@ const mutations = {
 
   REQUEST_FEED_LIST_FAILURE(state) {
     state.isFetching = false;
+    state.success = false;
   }
 };
 

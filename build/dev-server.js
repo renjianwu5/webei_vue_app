@@ -34,9 +34,9 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-router.get('/feeds/:page', function(req, res) {
+router.get('/feeds', function(req, res) {
   var data = [];
-  for (var i = (Number(req.params.page) - 1) * 10; i < Number(req.params.page) * 10; i++) {
+  for (var i = (Number(req.query.page) - 1) * 10; i < Number(req.query.page) * 10; i++) {
     data.push({
       id: i,
       content: '西湖区湖底公园' + i + '号',

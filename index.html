@@ -4,9 +4,22 @@
     <meta charset="utf-8">
     <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
     <title>webei-vue</title>
+    <style>
+      .fade-transition {
+        -webkit-transition: opacity .45s ease;
+        transition: opacity .45s ease;
+      }
+      .fade-enter, .fade-leave {
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
-    <app></app>
+    <app
+      :is="view"
+      transition="fade"
+      transition-mode="out-in"
+    ></app>
     <!-- built files will be auto injected -->
   </body>
 </html>
