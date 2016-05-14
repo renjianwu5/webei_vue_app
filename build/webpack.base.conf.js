@@ -18,6 +18,8 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
+      'vuexs': path.resolve(__dirname, '../src/vuex'),
+      'styles': path.resolve(__dirname, '../src/styles'),
       'vux-components': 'vux/src/components/',
       'components': path.resolve(__dirname, '../src/components')
     }

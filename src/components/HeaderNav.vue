@@ -7,7 +7,8 @@
           <a
             v-for="link in navList"
             track-by="id"
-            v-bind:class="[{ active: current === link.id}]"
+            v-bind:class="[{ active: topicId === link.id}]"
+            v-on:click="switchTopicFeeds(link.id)"
           >
             {{ link.text }}
           </a>
@@ -18,15 +19,33 @@
 </template>
 
 <script>
+  import { getTopicId, getNextPage } from 'vuexs/getters';
+  import { switchTopic, getFeedList } from 'vuexs/actions';
+
   export default {
     props: {
       navList: {
         type: Array,
         default: () => []
+      }
+    },
+    vuex: {
+      getters: {
+        topicId: getTopicId,
+        nextPage: getNextPage
       },
-      current: {
-        type: Number,
-        default: () => 1
+      actions: {
+        switchTopic,
+        getFeedList
+      }
+    },
+    methods: {
+      switchTopicFeeds(id) {
+        if (id === this.topicId) {
+          return;
+        }
+        this.switchTopic(id);
+        this.getFeedList({ page: 1, topic_id: id });
       }
     }
   };
@@ -37,6 +56,20 @@
   display: block;
   width: 100%;
   z-index: 2;
+}
+.feed_nav {
+  position: relative;
+}
+.feed_nav::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background-size: 100%;
+  background-image: -webkit-linear-gradient(0deg,rgba(255,255,255,0) 0,#fff 100%);
+  background-image: linear-gradient(90deg,rgba(255,255,255,0) 0,#fff 100%);
 }
 .feed_nav,.feed_nav .more {
   background-color: #fff

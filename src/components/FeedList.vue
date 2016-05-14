@@ -1,13 +1,13 @@
 <template>
   <div
     class="feed-list"
-    v-infinite-scroll="getFeedList({page: nextPage})"
+    v-infinite-scroll="getFeedList({page: nextPage, topic_id: topicId})"
     infinite-scroll-disabled="loading || !statusSuccess"
     infinite-scroll-distance="40"
   >
     <div
       v-for="item in feeds"
-      track-by="id"
+      track-by="$index"
       class="feed-list__item"
       v-on:click="showAcitonSheet()"
     >
@@ -16,7 +16,7 @@
     <load-more v-if="loading"></load-more>
     <button
       v-if="!loading && hasMore"
-      v-on:click="getFeedList({page: nextPage})"
+      v-on:click="getFeedList({page: nextPage, topic_id: topicId})"
       class="load-more--btn"
     >{{ statusSuccess ? '加载更多' : '获取失败，点击重试加载' }}</button>
   </div>
@@ -37,6 +37,7 @@
     getHasMore,
     getNextPage,
     getFetchStatus,
+    getTopicId,
     getActionSheetShow
   } from '../vuex/getters';
   import Actionsheet from './Actionsheet';
@@ -68,7 +69,8 @@
         nextPage: getNextPage,
         hasMore: getHasMore,
         statusSuccess: getFetchStatus,
-        actionsheetShow: getActionSheetShow
+        actionsheetShow: getActionSheetShow,
+        topicId: getTopicId
       },
       actions: {
         getFeedList,

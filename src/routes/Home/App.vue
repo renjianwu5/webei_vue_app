@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div style="width: 100%; height: 40px;background: #f2f2f2"></div>
+    <div style="width: 100%; height: 40px;background: #f2f2f2;line-height: 40px">
+      模拟头部(请使用 iPhone 查看效果)
+    </div>
     <sticky>
       <header-nav
         :nav-list="[{
@@ -31,21 +33,20 @@
             text: '教育',
             id: 9
           }]"
-        :current="2"
       ></header-nav>
     </sticky>
-    <feed-list></feed-list>
+    <feed-list keep-alive></feed-list>
   </div>
 </template>
 
 <script>
-import HeaderNav from './components/HeaderNav';
-import FeedList from './components/FeedList';
+import HeaderNav from 'components/HeaderNav';
+import FeedList from 'components/FeedList';
 import Sticky from 'vux-components/sticky';
 // import Display from './components/Display';
 // import Increment from './components/IncrementButton';
 // import Descrement from './components/DescrementButton';
-import store from './vuex/store';
+import store from 'vuexs/store';
 
 export default {
   components: {

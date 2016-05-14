@@ -15,11 +15,23 @@
     </style>
   </head>
   <body>
+    <!-- 首页开始 -->
     <app
       :is="view"
       transition="fade"
       transition-mode="out-in"
     ></app>
+    <!-- 首页结束 -->
+
+    <!-- 单页应用开始 -->
+    <router-view
+      keep-alive
+      :transition="fade"
+      transition-mode="out-in"
+    >
+    </router-view>
+    <!-- 单页应用结束 -->
+
     <!-- built files will be auto injected -->
   </body>
 </html>

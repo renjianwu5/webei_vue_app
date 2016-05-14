@@ -39,10 +39,10 @@ router.get('/feeds', function(req, res) {
   for (var i = (Number(req.query.page) - 1) * 10; i < Number(req.query.page) * 10; i++) {
     data.push({
       id: i,
-      content: '西湖区湖底公园' + i + '号',
+      content: '话题 ID 为 '+ req.query.topic_id +' ，且第 ' + req.query.page + ' 页的数据',
     });
   }
-    res.json(data);
+  res.json(data);
 });
 
 // proxy api requests

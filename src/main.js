@@ -1,10 +1,20 @@
-import Vue from 'vue';
-import App from './App';
 import FastClick from 'fastclick';
+import 'vux/vux.css';
+import './styles/style.css';
 FastClick.attach(document.body);
-Vue.config.silent = true;
-/* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App },
-});
+
+console.log(location.pathname);
+switch (location.pathname) {
+  case '/':
+    require.ensure([], (require) => {
+      require('./routes/Home');
+    });
+    break;
+  case '/reward':
+    require.ensure([], (require) => {
+      require('./routes/Reward');
+    });
+    break;
+  default:
+    break;
+}
