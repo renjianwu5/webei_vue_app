@@ -81,6 +81,7 @@
   height: 36px;
   overflow: hidden;
   overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
   border-bottom: 1px solid #dbdbdb
 }
 

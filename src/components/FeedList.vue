@@ -3,13 +3,13 @@
     class="feed-list"
     v-infinite-scroll="getFeedList({page: nextPage})"
     infinite-scroll-disabled="loading || !statusSuccess"
-    infinite-scroll-distance="10"
+    infinite-scroll-distance="40"
   >
     <div
       v-for="item in feeds"
       track-by="id"
       class="feed-list__item"
-      v-on:click="goDetail(item.id)"
+      v-on:click="showAcitonSheet()"
     >
       {{ item.content }}
     </div>
@@ -20,17 +20,46 @@
       class="load-more--btn"
     >{{ statusSuccess ? '加载更多' : '获取失败，点击重试加载' }}</button>
   </div>
+  <actionsheet
+    :show.sync="actionsheetShow"
+    :menus="menus"
+    show-cancel
+    @menu-click="clickActionSheet"
+    @just-hide-actionsheet="hideAcitonSheet()"
+    cancel-text="取消"
+  ></actionsheet>
 </template>
 
 <script>
-  import { getFeeds, getLoading, getHasMore, getNextPage, getFetchStatus } from '../vuex/getters';
-  import { getFeedList } from '../vuex/actions';
+  import {
+    getFeeds,
+    getLoading,
+    getHasMore,
+    getNextPage,
+    getFetchStatus,
+    getActionSheetShow
+  } from '../vuex/getters';
+  import Actionsheet from './Actionsheet';
+  import {
+    getFeedList,
+    showAcitonSheet,
+    hideAcitonSheet
+  } from '../vuex/actions';
   import LoadMore from './LoadMore';
   const infiniteScroll = require('vue-infinite-scroll').infiniteScroll;
 
   export default {
     components: {
-      LoadMore
+      LoadMore,
+      Actionsheet
+    },
+    data() {
+      return {
+        menus: {
+          menu1: '取消收藏',
+          menu2: '举报'
+        }
+      };
     },
     vuex: {
       getters: {
@@ -38,10 +67,13 @@
         loading: getLoading,
         nextPage: getNextPage,
         hasMore: getHasMore,
-        statusSuccess: getFetchStatus
+        statusSuccess: getFetchStatus,
+        actionsheetShow: getActionSheetShow
       },
       actions: {
-        getFeedList
+        getFeedList,
+        showAcitonSheet,
+        hideAcitonSheet
       }
     },
     directives: { infiniteScroll },
@@ -49,9 +81,13 @@
       // this.getFeedList({ page: 1 });
     },
     methods: {
-      goDetail: (id) => {
-        alert(`将会跳转到 ID 为 ${id} 的微帖详情页`);
+      clickActionSheet(key) {
+        console.log(key);
+        this.hideAcitonSheet();
       }
+      // goDetail: () => {
+      //   this.showAcitonSheet();
+      // }
     }
   };
 </script>
@@ -60,7 +96,7 @@
   .feed-list {
     background-color: #fff;
     max-width: 600px;
-    margin: 0 auto 20px;
+    padding-bottom: 40px;
     &__item {
       padding: 10px;
       border-bottom: 1px solid #eee;

@@ -9,12 +9,22 @@ const state = {
   success: true,
   nextPage: 1,
   hasMore: true,
+  showActionSheet: false,
+  actionMunes: [],
   feeds: []
 };
 
 const mutations = {
   // mutation 的第一个参数是当前的 state
   // 你可以在函数里修改 state
+
+  SHOW_ACTION_SHEET(state) {
+    state.showActionSheet = true;
+  },
+
+  HIDE_ACTION_SHEET(state) {
+    state.showActionSheet = false;
+  },
 
   ClEAR_FEED_LIST(state) {
     state.feeds = [];

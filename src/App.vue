@@ -1,36 +1,39 @@
 <template>
   <div id="app">
-    <header-nav
-      :nav-list="[{
-          text: '推荐',
-          id: 1
-        }, {
-          text: '5月飞花',
-          id: 2
-        }, {
-          text: '晒勒个图',
-          id: 3
-        }, {
-          text: '社会',
-          id: 4
-        }, {
-          text: '科技',
-          id: 5
-        }, {
-          text: '财经',
-          id: 6
-        }, {
-          text: '军事',
-          id: 7
-        }, {
-          text: '汽车',
-          id: 8
-        }, {
-          text: '教育',
-          id: 9
-        }]"
-      :current="2"
-    ></header-nav>
+    <div style="width: 100%; height: 40px;background: #f2f2f2"></div>
+    <sticky>
+      <header-nav
+        :nav-list="[{
+            text: '推荐',
+            id: 1
+          }, {
+            text: '5月飞花',
+            id: 2
+          }, {
+            text: '晒勒个图',
+            id: 3
+          }, {
+            text: '社会',
+            id: 4
+          }, {
+            text: '科技',
+            id: 5
+          }, {
+            text: '财经',
+            id: 6
+          }, {
+            text: '军事',
+            id: 7
+          }, {
+            text: '汽车',
+            id: 8
+          }, {
+            text: '教育',
+            id: 9
+          }]"
+        :current="2"
+      ></header-nav>
+    </sticky>
     <feed-list></feed-list>
   </div>
 </template>
@@ -38,6 +41,7 @@
 <script>
 import HeaderNav from './components/HeaderNav';
 import FeedList from './components/FeedList';
+import Sticky from 'vux-components/sticky';
 // import Display from './components/Display';
 // import Increment from './components/IncrementButton';
 // import Descrement from './components/DescrementButton';
@@ -46,13 +50,15 @@ import store from './vuex/store';
 export default {
   components: {
     HeaderNav,
-    FeedList
+    FeedList,
+    Sticky
   },
   store
 };
 </script>
 
 <style>
+@import '~vux/vux.css';
 html {
   height: 100%;
 }

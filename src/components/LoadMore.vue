@@ -1,6 +1,6 @@
 <template>
   <div class="load-more">
-    <div class="spinner">
+    <div class="spinner-container">
       <span class="dot dot-1"></span>
       <span class="dot dot-2"></span>
       <span class="dot dot-3"></span>
@@ -29,12 +29,12 @@
   }
 }
 
-.spinner {
+.spinner-container {
   padding: 14px;
   text-align: center
 }
 
-.spinner .dot {
+.spinner-container .dot {
   display: inline-block;
   width: 12px;
   height: 12px;
@@ -45,11 +45,11 @@
   animation-fill-mode: both
 }
 
-.spinner .dot-1 {
+.spinner-container .dot-1 {
   animation-delay: -.32s
 }
 
-.spinner .dot-2 {
+.spinner-container .dot-2 {
   animation-delay: -.16s
 }
 </style>

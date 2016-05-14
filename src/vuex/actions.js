@@ -8,3 +8,5 @@ export const getFeedList = ({ dispatch }, options) => {
     }, () => dispatch('REQUEST_FEED_LIST_FAILURE'));
   }, 500);
 };
+export const showAcitonSheet = ({ dispatch }) => dispatch('SHOW_ACTION_SHEET');
+export const hideAcitonSheet = ({ dispatch }) => dispatch('HIDE_ACTION_SHEET');

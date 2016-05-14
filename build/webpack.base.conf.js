@@ -18,6 +18,7 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
+      'vux-components': 'vux/src/components/',
       'components': path.resolve(__dirname, '../src/components')
     }
   },
@@ -49,6 +50,10 @@ module.exports = {
         loader: 'babel',
         include: projectRoot,
         exclude: /node_modules/
+      },
+      {
+        test: /vux.src.*?js$/,
+        loader: 'babel'
       },
       {
         test: /\.json$/,
