@@ -1,5 +1,13 @@
 # webei-vue
 
+## 介绍
+使用 vue-cli 构建的，一个用来重构公司项目搭的一个架子，接下来不更新了
+
+## 用到的技术
+* [Vue](https://github.com/vuejs/vue)
+* [Vuex](https://github.com/vuejs/vuex)
+* [Vux](https://github.com/airyland/vux)
+
 > A Vue.js project
 
 ## Build Setup
